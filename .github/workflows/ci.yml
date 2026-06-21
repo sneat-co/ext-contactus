@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  invariant:
+    name: zero-other-extension-deps invariant
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+      - name: Enforce no-other-extension dependency
+        run: bash scripts/check-no-extension-deps.sh
+
+  backend:
+    name: backend build + test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+      - name: Build
+        working-directory: backend
+        run: go build ./...
+      - name: Test
+        working-directory: backend
+        run: go test ./...
