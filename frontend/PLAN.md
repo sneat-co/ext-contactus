@@ -33,21 +33,33 @@ another extension's `-shared`/`-internal`). Two shapes cover everything:
 Generic, non-contactus components belong in a **foundational** lib
 (`@sneat/ui` / `@sneat/ng`), which any extension may import directly.
 
-## TODO to finish the extraction (separate, larger step)
+## ✅ Full API recovered
 
-1. **Bootstrap the nx workspace** here (`frontend/` currently has no `nx.json` /
-   root `package.json`) — mirror `assetus/frontend` / `contactus/frontend`
-   (`ng-package.json`, `project.json`, `tsconfig.*`, publishable target).
-2. **Migrate the full published `0.12.1` API** into this lib — the DTOs/types,
-   enums (`ContactType`, `ContactRoleDriver`, …) and the existing tokens
-   (`CONTACT_SERVICE`, `CONTACTUS_SPACE_SERVICE`, `CONTACT_NAV_SERVICE`, …) and
-   helpers (`addSpace`, `filterContactsByTextAndRole`, `validateContactRequest`, …).
-   The package currently ships only `.d.ts` + compiled JS (no `.ts` source and no
-   `repository` link), so this needs the original source or a `.d.ts`-guided
-   reconstruction (helpers re-implemented).
-3. **Bind the new tokens in contactus `-shared`**: `{ provide: CONTACTS_SELECTOR,
-   useExisting: ContactsSelectorService }` (adapter mapping `IContactsSelectorProps`
-   → the existing `IContactSelectorOptions.componentProps`), and register the
-   contacts-list component as the `sneat-contacts-list` custom element.
-4. **Publish** the new contract + shared versions via the repo release workflow,
+The complete `0.12.1` contract source (42 files — DTOs, contexts, apidto, and the
+existing tokens `CONTACT_SERVICE`, `CONTACTUS_SPACE_SERVICE`, `CONTACT_NAV_SERVICE`,
+`CONTACTUS_NAV_SERVICE`, `CONTACT_GROUP_SERVICE`, `CONTACT_ROLE_SERVICE`,
+`INVITE_SERVICE`, enums like `ContactRoleDriver`, helpers like `addSpace` /
+`filterContactsByTextAndRole` / `validateContactRequest`) was **recovered from
+`contactus` git history** — it was removed in commit `875cc5b` (the extraction),
+so `875cc5b^` still had it — and moved here. So this lib now holds the full API
+**plus** the new picker/list cross-extension surfaces. No `.d.ts` reconstruction
+needed.
+
+## TODO to finish
+
+1. **Bootstrap the nx workspace** here (`frontend/` has no `nx.json`/root
+   `package.json` yet) — mirror `contactus/frontend`'s workspace so the recovered
+   `project.json`/`ng-package.json`/`tsconfig.*` build a publishable lib; reconcile
+   against published `0.12.1` (recovery is the last in-repo state; diff before tagging).
+2. **`-internal` register function binds ALL tokens.** The implementation lib's
+   `provideContactusInternal()` MUST register the concrete impl for **every**
+   contract token in one place — including the new **`CONTACTS_SELECTOR`**
+   (`{ provide: CONTACTS_SELECTOR, useClass: ContactsSelectorAdapter }`, where the
+   adapter maps `IContactsSelectorProps` → the existing shared
+   `IContactSelectorOptions.componentProps` and `IContactWithBriefAndSpace` →
+   `IContactRef`). Registering all tokens through the single `provide…Internal()`
+   is the platform convention — the host app calls it once and every capability is
+   wired. The contacts-list component (`-shared`) is registered as the
+   `sneat-contacts-list` custom element in the same wiring.
+3. **Publish** the new contract + shared versions via the repo release workflow,
    then bump consumers (requoter injects `CONTACTS_SELECTOR` / uses the tag).
