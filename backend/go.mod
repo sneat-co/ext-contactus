@@ -1,4 +1,4 @@
-module github.com/sneat-co/contactus-ext/backend
+module github.com/sneat-co/ext-contactus/backend
 
 go 1.25.0
 

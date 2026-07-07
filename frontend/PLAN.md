@@ -1,6 +1,6 @@
 # Frontend contract lib — `@sneat/extension-contactus-contract`
 
-This repo (`contactus-ext`) is the sanctioned home of the contactus **contract**
+This repo (`ext-contactus`) is the sanctioned home of the contactus **contract**
 surface (per the `extension-contract-repo` convention). The **backend** contract
 is already here; the **frontend** contract lib still needs to be finished.
 

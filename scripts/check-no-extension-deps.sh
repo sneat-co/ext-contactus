@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Enforces the extension-contract-repo zero-other-extension-deps invariant:
-# contactus-ext must depend only on foundational/core code, never another extension.
+# ext-contactus must depend only on foundational/core code, never another extension.
 #
 # MVP mechanism (chosen at implementation time, per the convention's open question):
 # language-native dependency-list assertions — `go list` for the backend module and a
@@ -13,12 +13,12 @@ violations=0
 echo "== backend: scanning Go module dependency graph =="
 if [ -f "${repo_root}/backend/go.mod" ]; then
   pushd "${repo_root}/backend" >/dev/null
-  # Any dependency on another dedicated extension's backend module
-  # (pattern github.com/sneat-co/<name>/backend), excluding our own module.
+# Any dependency on another dedicated extension's backend module
+# (pattern github.com/sneat-co/<name>/backend), excluding our own module.
   deps="$(go list -deps ./... 2>/dev/null || true)"
   bad="$(printf '%s\n' "$deps" \
     | grep -E '^github\.com/sneat-co/[a-z0-9-]+/backend' \
-    | grep -v '^github\.com/sneat-co/contactus-ext/backend' || true)"
+    | grep -v '^github\.com/sneat-co/ext-contactus/backend' || true)"
   if [ -n "$bad" ]; then
     echo "  FORBIDDEN backend dependency on another extension:"
     printf '    %s\n' $bad
@@ -49,7 +49,7 @@ else
 fi
 
 if [ "$violations" -ne 0 ]; then
-  echo "INVARIANT VIOLATED: contactus-ext must not depend on another extension." >&2
+  echo "INVARIANT VIOLATED: ext-contactus must not depend on another extension." >&2
   exit 1
 fi
 echo "zero-other-extension-deps invariant holds."

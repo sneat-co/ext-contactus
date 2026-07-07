@@ -1,4 +1,4 @@
-# contactus-ext / frontend
+# ext-contactus / frontend
 
 Home of the `@sneat/extension-contactus-contract` nx library — contactus's runtime-light public
 frontend contract (interfaces, DTO/model types, enums, and Angular `InjectionToken`s).

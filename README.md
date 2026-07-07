@@ -1,6 +1,6 @@
-# contactus-ext
+# ext-contactus
 
-Public **contract surface** for the `contactus` extension — the first repo to follow the
+Public **extension-definition repo** for the `contactus` extension — the first repo to follow the
 [`extension-contract-repo`](https://github.com/sneat-co/sneat-libs/blob/main/spec/features/extension-contract-repo/README.md)
 convention.
 
@@ -11,15 +11,15 @@ contactus asks callers to satisfy. It contains **no** contactus implementation.
 ## Layout
 
 ```
-contactus-ext/
-├── backend/    # Go module github.com/sneat-co/contactus-ext/backend
+ ext-contactus/
+├── backend/    # Go module github.com/sneat-co/ext-contactus/backend
 └── frontend/   # nx lib published as @sneat/extension-contactus-contract
 ```
 
 ## The load-bearing invariant
 
-`contactus-ext` depends **only on foundational/core code — never on another extension.** Because
-it has no edge back to any sibling, `sibling → contactus-ext` can never form a dependency cycle,
+`ext-contactus` depends **only on foundational/core code — never on another extension.** Because
+it has no edge back to any sibling, `sibling → ext-contactus` can never form a dependency cycle,
 and (frontend) importing it never triggers the prebuilt-bundle peer-resolution wall.
 
 An interface or type belongs here **only if its entire signature is expressible in contactus-own +

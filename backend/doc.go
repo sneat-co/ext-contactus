@@ -1,4 +1,4 @@
-// Package backend is the root of the contactus-ext backend Go module.
+// Package backend is the root of the ext-contactus backend Go module.
 //
 // This module holds the public contract surface of the contactus extension —
 // model/const shapes, facade interfaces, and caller-satisfied callback
