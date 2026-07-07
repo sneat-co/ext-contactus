@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/dal-go/dalgo/dal"
-	"github.com/sneat-co/contactus-ext/backend/contactusmodels/briefs4contactus"
+	"github.com/sneat-co/ext-contactus/backend/contactusmodels/briefs4contactus"
 	"github.com/sneat-co/sneat-go-core/coretypes"
 )
 

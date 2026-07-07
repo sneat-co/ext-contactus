@@ -5,7 +5,7 @@ import (
 	"slices"
 
 	"github.com/dal-go/dalgo/update"
-	"github.com/sneat-co/contactus-ext/backend/contactusmodels/const4contactus"
+	"github.com/sneat-co/ext-contactus/backend/contactusmodels/const4contactus"
 	"github.com/sneat-co/sneat-go-core/coretypes"
 	"github.com/sneat-co/sneat-go-core/models/dbmodels"
 	"github.com/sneat-co/sneat-go-core/validate"

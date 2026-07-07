@@ -3,7 +3,7 @@ package briefs4contactus
 import (
 	"strings"
 
-	"github.com/sneat-co/contactus-ext/backend/contactusmodels/const4contactus"
+	"github.com/sneat-co/ext-contactus/backend/contactusmodels/const4contactus"
 	core "github.com/sneat-co/sneat-go-core"
 	"github.com/sneat-co/sneat-go-core/models/dbmodels"
 	"github.com/sneat-co/sneat-go-core/models/dbprofile"
