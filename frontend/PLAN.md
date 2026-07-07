@@ -7,7 +7,7 @@ is already here; the **frontend** contract lib still needs to be finished.
 ## Status
 
 - ✅ Backend contract (Go): `backend/` (`contactusmodels`, `facade4contactus`).
-- 🚧 Frontend contract (Angular): `frontend/libs/contactus-contract/` — **started
+- 🚧 Frontend contract (Angular): `frontend/libs/extensions/contactus/contract/` — **started
   in this PR** with the two cross-extension surfaces that were missing and were
   blocking a clean consumer integration (requoter picking drivers):
   - **`contacts-selector.contract.ts`** — `CONTACTS_SELECTOR` `InjectionToken` +
@@ -47,10 +47,10 @@ needed.
 
 ## TODO to finish
 
-1. **Bootstrap the nx workspace** here (`frontend/` has no `nx.json`/root
-   `package.json` yet) — mirror `contactus/frontend`'s workspace so the recovered
-   `project.json`/`ng-package.json`/`tsconfig.*` build a publishable lib; reconcile
-   against published `0.12.1` (recovery is the last in-repo state; diff before tagging).
+1. **Bootstrap the nx workspace** here: done. `frontend/` now has its own
+   `package.json`, `nx.json`, `tsconfig.base.json`, and `eslint.config.mjs`, and
+   the contract library lives under `libs/extensions/contactus/contract` like the
+   other extension workspaces.
 2. **`-internal` register function binds ALL tokens.** The implementation lib's
    `provideContactusInternal()` MUST register the concrete impl for **every**
    contract token in one place — including the new **`CONTACTS_SELECTOR`**

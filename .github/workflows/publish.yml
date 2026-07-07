@@ -1,0 +1,19 @@
+name: Publish contract
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Git ref (branch or tag) to publish from (default - the default branch)
+        required: false
+        default: ""
+
+jobs:
+  publish:
+    uses: sneat-co/cicd/.github/workflows/npm-publish.yml@main
+    with:
+      working-directory: frontend
+      ref: ${{ inputs.ref }}
+      build-command: pnpm exec ng-packagr -p libs/extensions/contactus/contract/ng-package.json
+      publish-command: npm publish dist/libs/extensions/contactus/contract --access public
+    secrets: inherit

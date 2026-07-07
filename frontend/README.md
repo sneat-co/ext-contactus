@@ -1,11 +1,16 @@
 # ext-contactus / frontend
 
-Home of the `@sneat/extension-contactus-contract` nx library — contactus's runtime-light public
-frontend contract (interfaces, DTO/model types, enums, and Angular `InjectionToken`s).
+Home of the `@sneat/extension-contactus-contract` Nx library: contactus's
+runtime-light public frontend contract surface (DTOs, contexts, enums, and
+Angular `InjectionToken`s).
 
-The library and its nx workspace configuration are migrated here from the `contactus` main repo
-by the `contactus-ext` reference-extraction plan (frontend relocation task). Until then this
-placeholder reserves the `frontend/` layout slot.
+The workspace is now self-contained in this repo and follows the standard
+extension layout:
 
-The package depends only on foundational/core peers (`@sneat/core`, `@sneat/dto`,
-`@sneat/space-models`, `@sneat/auth-models`, `@angular/core`, `rxjs`) — never on another extension.
+- `frontend/package.json`
+- `frontend/nx.json`
+- `frontend/libs/extensions/contactus/contract`
+
+The package depends only on foundational peers (`@sneat/core`, `@sneat/dto`,
+`@sneat/space-models`, `@sneat/auth-models`, `@angular/core`, `rxjs`) and does
+not import another extension's implementation.
