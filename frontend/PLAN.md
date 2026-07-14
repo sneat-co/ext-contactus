@@ -51,8 +51,8 @@ needed.
    `package.json`, `nx.json`, `tsconfig.base.json`, and `eslint.config.mjs`, and
    the contract library lives under `libs/extensions/contactus/contract` like the
    other extension workspaces.
-2. **`-internal` register function binds ALL tokens.** The implementation lib's
-   `provideContactusInternal()` MUST register the concrete impl for **every**
+2. **Runtime provider binds ALL tokens.** The implementation lib's
+   `provideContactus()` MUST register the concrete impl for **every**
    contract token in one place — including the new **`CONTACTS_SELECTOR`**
    (`{ provide: CONTACTS_SELECTOR, useClass: ContactsSelectorAdapter }`, where the
    adapter maps `IContactsSelectorProps` → the existing shared

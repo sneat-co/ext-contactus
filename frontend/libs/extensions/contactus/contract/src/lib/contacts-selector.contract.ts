@@ -7,10 +7,10 @@ import { IContactRef } from './contact-ref';
  *
  * A sibling extension (e.g. requoter picking drivers) depends ONLY on this
  * contract — it injects `CONTACTS_SELECTOR` and calls `selectMultipleContacts`,
- * never importing `@sneat/extension-contactus-shared`. The concrete
+ * never importing `@sneat/extension-contactus-ui`. The concrete
  * implementation (which opens the contactus selector modal, incl. the "add a new
- * person" tab) lives in contactus `-shared` and is bound to this token by the
- * host app's `provideContactusInternal()`.
+ * person" tab) lives in the contactus UI package and is bound to this token by
+ * the host app's `provideContactus()`.
  */
 export interface IContactsSelectorProps {
 	readonly space: ISpaceContext;
