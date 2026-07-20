@@ -25,3 +25,5 @@ check_coverage() {
 
 check_coverage ./contactusmodels/briefs4contactus contactusmodels/briefs4contactus/coverage_floor.txt 'Contactus brief helpers'
 check_coverage ./contactusmodels/const4contactus contactusmodels/const4contactus/coverage_floor.txt 'Contactus constants'
+check_coverage ./dal4contactus dal4contactus/coverage_floor.txt 'Contactus record linkage helpers'
+check_coverage ./facade4contactus facade4contactus/coverage_floor.txt 'Contactus facade linkage helpers'

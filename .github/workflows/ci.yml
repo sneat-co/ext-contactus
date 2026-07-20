@@ -17,7 +17,16 @@ jobs:
       - name: Enforce no-other-extension dependency
         run: bash scripts/check-no-extension-deps.sh
 
+  linkage_boundary:
+    name: linkage-only capability boundary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject persistence capabilities from linkage helpers
+        run: bash scripts/check-linkage-boundary.sh
+
   backend:
+    needs: [invariant, linkage_boundary]
     name: backend build + test
     runs-on: ubuntu-latest
     steps:
