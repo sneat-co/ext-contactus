@@ -17,14 +17,30 @@ jobs:
       - name: Enforce no-other-extension dependency
         run: bash scripts/check-no-extension-deps.sh
 
+  linkage_boundary:
+    name: linkage-only capability boundary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject persistence capabilities from linkage helpers
+        run: bash scripts/check-linkage-boundary.sh
+
   backend:
+    needs: [invariant, linkage_boundary]
     name: backend build + test
     runs-on: ubuntu-latest
+    env:
+      GOPRIVATE: github.com/sneat-co
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
           go-version-file: backend/go.mod
+      - name: Authenticate private Go modules
+        env:
+          GH_TOKEN: ${{ secrets.SNEAT_CI_READWRITE_TOKEN }}
+        shell: bash
+        run: git config --global url."https://x-access-token:${GH_TOKEN}@github.com/".insteadOf "https://github.com/"
       - name: Build
         working-directory: backend
         run: go build ./...
