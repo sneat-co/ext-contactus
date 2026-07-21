@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"slices"
 
-	"github.com/dal-go/dalgo/update"
+	"github.com/dal-go/record/update"
 	"github.com/sneat-co/ext-contactus/backend/contactusmodels/const4contactus"
 	"github.com/sneat-co/sneat-go-core/coretypes"
 	"github.com/sneat-co/sneat-go-core/models/dbmodels"
