@@ -3,7 +3,7 @@ package facade4contactus
 import (
 	"time"
 
-	"github.com/dal-go/dalgo/dal"
+	"github.com/dal-go/record"
 	"github.com/sneat-co/ext-contactus/backend/contactusmodels/briefs4contactus"
 	"github.com/sneat-co/sneat-go-core/coretypes"
 )
@@ -20,5 +20,5 @@ type ContactusSpaceContributor interface {
 		creatorBrief briefs4contactus.ContactBrief,
 		createdAt time.Time,
 		byUserID string,
-	) (records []dal.Record, err error)
+	) (records []record.Record, err error)
 }
