@@ -5,7 +5,6 @@ import (
 
 	dalrecord "github.com/dal-go/record"
 	"github.com/sneat-co/ext-contactus/backend/contactusmodels/const4contactus"
-	"github.com/sneat-co/sneat-core-modules/spaceus/dbo4spaceus"
 	"github.com/sneat-co/sneat-go-core/coretypes"
 )
 
@@ -13,7 +12,7 @@ func TestNewContactRecordUsesContactusSchemaKey(t *testing.T) {
 	t.Parallel()
 	spaceID := coretypes.SpaceID("space_1")
 	contactID := "contact_1"
-	parent := dbo4spaceus.NewSpaceModuleKey(spaceID, const4contactus.ExtensionID)
+	parent := coretypes.NewSpaceModuleKey(spaceID, const4contactus.ExtensionID)
 	want := dalrecord.NewKeyWithParentAndID(parent, const4contactus.ContactsCollection, contactID)
 
 	key := NewContactKey(spaceID, contactID)
